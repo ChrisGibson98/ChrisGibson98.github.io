@@ -11,11 +11,11 @@ function setup()
 	angleMode(DEGREES);
 	if (windowWidth > windowHeight)
 	{
-		r = windowHeight/6;
+		r = windowHeight/4;
 	}
 	else
 	{
-		r = windowWidth/6;
+		r = windowWidth/4;
 	}
 	w = windowWidth;
 	h = windowHeight;
@@ -23,7 +23,7 @@ function setup()
 	textConst = r/3.6203611;
 	angle = 360/projects.length;
 	createCanvas(windowWidth, windowHeight);
-	background(50);
+	background(25);
 	fill(255);
 	noStroke();
 	ellipse(w/2, h/2, r);
@@ -55,11 +55,11 @@ function windowResized()
 	h = windowHeight;
 	if (windowWidth > windowHeight)
 	{
-		r = windowHeight/6;
+		r = windowHeight/4;
 	}
 	else
 	{
-		r = windowWidth/6;
+		r = windowWidth/4;
 	}
 	background(50, 50, 50);
 	fill(255);

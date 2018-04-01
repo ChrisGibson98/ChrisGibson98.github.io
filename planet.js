@@ -17,8 +17,9 @@ this.lengthMulti = lengthMulti;
       this.y = (h/this.lengthMulti * cos(this.a)) + h/2;
       stroke(255);
       line(w/2, h/2, this.x, this.y);
+      noStroke();
       fill(255);
-      ellipse(this.x, this.y, r/3);
+      ellipse(this.x, this.y, r/5);
       console.log(this.a + ", " + dist(w/2, h/2, this.x,this.y));
     }
 }
