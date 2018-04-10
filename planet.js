@@ -1,10 +1,11 @@
 class planet
 {
-  constructor(a, planetR, name, x, y, lengthMulti, zooms)
+  constructor(a, planetR, name, projectURL, x, y, lengthMulti, zooms)
   {
     this.a = a;
     this.planetR = planetR;
     this.name = name;
+    this.projectURL = projectURL;
     this.x = x;
     this.y = y;
     this.lengthMulti = lengthMulti;
