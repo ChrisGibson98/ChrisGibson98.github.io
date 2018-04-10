@@ -58,9 +58,9 @@ function mouseClicked()
 	{
 		if(clickable == true)
 		{
-	window.open("https://chrisgibson98.github.io/" + latestZoom.projectURL, "_self");
-}
-}
+			window.open("https://chrisgibson98.github.io/" + latestZoom.projectURL, "_self");
+		}
+	}
 }
 
 function reset()
