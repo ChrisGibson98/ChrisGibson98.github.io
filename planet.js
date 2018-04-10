@@ -33,7 +33,6 @@ class planet
     else
     {
       this.zooms = 0;
-      // reset();
     }
   }
 }

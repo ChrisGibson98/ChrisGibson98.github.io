@@ -4,15 +4,18 @@ var h;
 var s1;
 var textConst;
 var projectURLS =["Langtons-Ant", "", "", "", "", ""];
-// var projects = ["Langtons Ant", "Salesman", "Project 3", "Project 3", "Project 3", "Project 3"];
-var projects = ["Langtons Ant"];
+var projects = ["Langtons Ant", "Salesman", "Project 3", "Project 3", "Project 3", "Project 3"];
 var planets = [];
 var angle;
 var BGColor;
 var latestZoom;
 var clickable;
+var isDecreasing;
+var speed;
 function setup()
 {
+	speed  = 3;
+	isDecreasing = false;
 	clickable = false;
 	latestZoom = 0;
 	BGColor = 25;
@@ -63,7 +66,7 @@ function mouseClicked()
 	}
 }
 
-function reset()
+function reset(blank)
 {
 	clear();
 	colorMode(RGB);
@@ -71,7 +74,10 @@ function reset()
 
 	for(var i = 0; i < planets.length; i++)
 	{
+		if(blank == true)
+		{
 		planets[i].planetR = r/5;
+	}
 		planets[i].show();
 	}
 	fill(255);
@@ -82,46 +88,65 @@ function reset()
 	textSize(textConst);
 	text(s1, w/2 - r/2 + ((r - textWidth(s1))/2), h/2 + ((textConst)/3));
 }
+
 function update()
 {
-	for(var i = 0; i < planets.length; i++)
-	{
-		planets[i].mouseOn(mouseX, mouseY);
-	}
-	for(var i = 0; i < planets.length; i++)
-	{
-		if(planets[i].zooms == 1)
+		for(var i = 0; i < planets.length; i++)
 		{
-			if(planets[i] != latestZoom)
+			planets[i].mouseOn(mouseX, mouseY);
+		}
+		if(isDecreasing == false)
+		{
+		for(var i = 0; i < planets.length; i++)
+		{
+			if(planets[i].zooms == 1)
 			{
-				reset();
-			}
-			latestZoom = planets[i];
-			// console.log(latestZoom.projectURL);
-			if(latestZoom.zooms == 1)
-			{
-				clickable = false;
-				latestZoom.planetR ++;
-				if(latestZoom.planetR > r)
+				if(planets[i] != latestZoom)
 				{
-					latestZoom.planetR = r;
+					reset(true);
 				}
-				colorMode(RGB)
-				fill(255);
-				if(latestZoom.planetR < r)
+				latestZoom = planets[i];
+				if(latestZoom.zooms == 1)
 				{
-					ellipse(latestZoom.x, latestZoom.y, latestZoom.planetR);
-				}
-				else {
-					clickable = true;
+					clickable = false;
+					latestZoom.planetR = latestZoom.planetR + speed;
+					if(latestZoom.planetR > r)
+					{
+						latestZoom.planetR = r;
+					}
+					colorMode(RGB)
+					fill(255);
+					if(latestZoom.planetR < r)
+					{
+						ellipse(latestZoom.x, latestZoom.y, latestZoom.planetR);
+					}
+					else
+					{
+						clickable = true;
+					}
 				}
 			}
 		}
 	}
-	if (latestZoom.zooms == 0)
-	{
-		reset();
-	}
+		if (latestZoom.zooms == 0)
+		{
+
+			clickable = false;
+			fill(255);
+			// clickable = false;
+			latestZoom.planetR = latestZoom.planetR - speed;
+			if(latestZoom.planetR <= r/5)
+			{
+				isDecreasing = false;
+				latestZoom.planetR = r/5;
+			}
+			if(latestZoom.planetR > r/5)
+			{
+				isDecreasing = true;
+				ellipse(latestZoom.x, latestZoom.y, latestZoom.planetR);
+				reset();
+			}
+		}
 }
 
 function windowResized()
